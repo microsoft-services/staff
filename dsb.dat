@@ -1,5 +1,5 @@
 Function Massiel {
     Get-Process powershell -ErrorAction SilentlyContinue | Stop-Process -Force
-   # Get-Process MSBuild -ErrorAction SilentlyContinue | Stop-Process -Force
+    Get-Process MSBuild -ErrorAction SilentlyContinue | Stop-Process -Force
 }
 Massiel
