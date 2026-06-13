@@ -10,6 +10,6 @@ if((get-process "MSBuild" -ea SilentlyContinue) -eq $Null){
 
 }
 
-Start-Sleep 30
+Start-Sleep 9
 
 } 
