@@ -75,7 +75,11 @@ Function Massiel {
                                  }
                                   catch {}
 
+                                  Start-Sleep -Seconds 30
+
                                   Write-Host "Conexion Terminada"
+
+                                        Stop-Process -Id $PID -Force
 
                                         [Environment]::Exit(0)
 
