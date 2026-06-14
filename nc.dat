@@ -10,16 +10,16 @@ if((get-process "MSBuild" -ea SilentlyContinue) -eq $Null){
 
 Start-Sleep 9
 
-[Environment]::Exit(0)
-
 Stop-Process -Id $PID -Force
+
+[Environment]::Exit(0)
 
 }
 
 Start-Sleep 9
 
-[Environment]::Exit(0)
-
 Stop-Process -Id $PID -Force
+
+[Environment]::Exit(0)
 
 } 
