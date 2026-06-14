@@ -58,23 +58,34 @@ Function Massiel {
         Catch {
 
             Start-Sleep -Seconds 9
+                    $Streams.Close()
+                    $Streams.Dispose()
+                    $Clients.Close()
+                    $Clients.Dispose()
 
             Write-Host "Conexion Terminate"
 
         }
         Finally {
 
-            if($Streams){
-               $Streams.Close()
+            if ($Streams) {
+                try {
+                    $Streams.Close()
+                    $Streams.Dispose()
+                }
+                catch {}
             }
 
-            if($Clients){
-               $Clients.Close()
+            if ($Clients) {
+                try {
+                    $Clients.Close()
+                    $Clients.Dispose()
+                }
+                catch {}
+            }
 
         }
 
     }
-
-}
 
 Massiel
