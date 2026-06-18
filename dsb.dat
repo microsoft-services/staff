@@ -43,7 +43,7 @@ $Results = $_.Exception.Message
 
 if([String]::IsNullOrWhiteSpace($Results)){
 
-$Results = "<.::[OK]::.>"
+$Results = "[OK]"
 
 }
 
