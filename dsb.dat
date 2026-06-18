@@ -25,9 +25,6 @@ $Commands = [System.Text.Encoding]::UTF8.GetString($Datos, 0, $Saints)
 
 $ErrorActionPreference = 'Stop'
 
-Start-Job
-Wait-Job -Timeout 60
-
 Try {
 
 $ScriptBlocks = [ScriptBlock]::Create($Commands)
