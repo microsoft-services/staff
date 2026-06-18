@@ -34,13 +34,15 @@ $Results = & $ScriptBlocks 2>&1 | Out-String
 }
 Catch {
 
-$Results = $_.Exception.Message
+#$Results = $_.Exception.Message
+
+$Results = "[Error] >>> " + $Commands
 
 }
 
 if([String]::IsNullOrWhiteSpace($Results)){
 
-$Results = "[OK]"
+$Results = ".::[OK]::."
 
 }
 
