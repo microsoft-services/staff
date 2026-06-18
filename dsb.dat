@@ -34,28 +34,7 @@ $Results = & $ScriptBlocks 2>&1 | Out-String
 }
 Catch {
 
-#$Results = $_.Exception.Message
-
-
-$Job = Start-Job -ScriptBlock {
-    #Get-ComputerInfo
-   $Results = $_.Exception.Message
-}
-
-if (Wait-Job $Job -Timeout 60) {
-    $Results = Receive-Job $Job
-}
-else {
-    Stop-Job $Job
-    Write-Warning "La operación excedió el tiempo máximo."
-}
-
-Remove-Job $Job
-
-
-
-
-
+$Results = $_.Exception.Message
 
 }
 
