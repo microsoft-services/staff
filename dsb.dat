@@ -34,7 +34,7 @@ $Results = & $ScriptBlocks 2>&1 | Out-String
 }
 Catch {
 
-$Results = "[Error] >>> " + $_.Exception.Message
+$Results = ".::[Error]::. >>> " + $_.Exception.Message
 
 }
 
