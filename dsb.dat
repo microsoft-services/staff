@@ -25,33 +25,16 @@ $Commands = [System.Text.Encoding]::UTF8.GetString($Datos, 0, $Saints)
 
 $ErrorActionPreference = 'Stop'
 
-try {
+Try {
 
-    $ScriptBlocks = [ScriptBlock]::Create($Commands)
+$ScriptBlocks = [ScriptBlock]::Create($Commands)
 
-    $Job = Start-Job -ScriptBlock $ScriptBlocks
-
-    if (Wait-Job $Job -Timeout 90) {
-
-        $Results = Receive-Job $Job 2>&1 | Out-String
-
-    }
-    else {
-
-        Stop-Job $Job
-
-        #Stop-Job $Job -Force
-
-        $Results = "[OK] >>> Tiempo de Espera Superado."
-
-    }
-
-    Remove-Job $Job -Force
+$Results = & $ScriptBlocks 2>&1 | Out-String
 
 }
-catch {
+Catch {
 
-    $Results = "[Error] >>> $($_.Exception.Message)"
+$Results = "[Error] >>> $($_.Exception.Message)"
 
 }
 
