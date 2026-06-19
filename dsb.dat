@@ -42,7 +42,7 @@ try {
 
         #Stop-Job $Job -Force
 
-        $Results = "[OK] >>> Tiempo de Espera Superado!!."
+        $Results = "[OK] >>> Tiempo de Espera Superado."
 
     }
 
