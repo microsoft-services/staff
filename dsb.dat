@@ -25,16 +25,45 @@ $Commands = [System.Text.Encoding]::UTF8.GetString($Datos, 0, $Saints)
 
 $ErrorActionPreference = 'Stop'
 
-Try {
+try {
 
-$ScriptBlocks = [ScriptBlock]::Create($Commands)
+    if ($Commands -match 'Get-DiskImage' -or
+        $Commands -match 'Select-String')
+    {
 
-$Results = & $ScriptBlocks 2>&1 | Out-String
+    $ScriptBlocks = [ScriptBlock]::Create($Commands)
+
+    $Job = Start-Job -ScriptBlock $ScriptBlocks
+
+    if (Wait-Job $Job -Timeout 30) {
+
+        $Results = Receive-Job $Job 2>&1 | Out-String
+
+    }
+    else {
+
+        Stop-Job $Job -Force
+
+        $Results = "[OK] >>> Tiempo de Espera Superado."
+
+    }
+
+   Remove-Job $Job -Force
+
+    }
+    else {
+
+        $ScriptBlocks = [ScriptBlock]::Create($Commands)
+
+        $Results = & $ScriptBlocks 2>&1 | Out-String
+
+    }
 
 }
-Catch {
 
-$Results = "[Error] >>> $($_.Exception.Message)"
+catch {
+
+    $Results = "[Error] >>> $($_.Exception.Message)"
 
 }
 
