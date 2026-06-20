@@ -27,8 +27,7 @@ $ErrorActionPreference = 'Stop'
 
 try {
 
-    if ($Commands -match 'Get-DiskImage' -or
-        $Commands -match 'Select-String')
+    if ($Commands -match 'Get-DiskImage')
     {
 
     $ScriptBlocks = [ScriptBlock]::Create($Commands)
