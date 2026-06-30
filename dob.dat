@@ -7,7 +7,12 @@ using System.Text;
 
 public class TunnelClient
 {
-    public static void Start("192.168.10.254", int 9090)
+
+
+        string ip = "192.168.10.254";
+        int port = 9090;
+
+    public static void Start(string ip, int port)
     {
         TcpClient client = new TcpClient();
         client.Connect(ip, port);
