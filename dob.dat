@@ -18,7 +18,7 @@ while($true)
        Write-Host "[+] Abriendo RDP Local"
 
 $RdpControl = New-Object System.Net.Sockets.TcpClient
-$RdpControl.Connect("127.0.0.4",7070)
+$RdpControl.Connect("127.0.0.4",3389)
 $RdpStream = $RdpControl.GetStream()
 
 while($true)
