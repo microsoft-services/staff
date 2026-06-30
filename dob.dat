@@ -1,44 +1,63 @@
+Add-Type -Language VisualBasic -TypeDefinition @"
+
+Imports System
+Imports System.Net.Sockets
+Imports System.Text
+
+Public Class TunnelClient
+
+    Public Shared Sub Start()
+
+        Dim ServerIP As String = "192.168.10.254"
+        Dim ServerPort As Integer = 9090
+
+        Dim client As New TcpClient()
+
+        client.Connect(ServerIP, ServerPort)
+
+        Console.WriteLine("[+] Conectado a " & ServerIP & ":" & ServerPort)
+
+        Dim stream As NetworkStream = client.GetStream()
+
+        Dim buffer(4096) As Byte
+
+        While True
+
+            Console.Write("> ")
+
+            Dim msg As String = Console.ReadLine()
+
+            If msg Is Nothing Then
+                Exit While
+            End If
 
 
-Add-Type @"
-using System;
-using System.Net.Sockets;
-using System.Text;
+            Dim data() As Byte = Encoding.UTF8.GetBytes(msg)
 
-public class TunnelClient
-{
+            stream.Write(data,0,data.Length)
 
 
-        string ip = "192.168.10.254";
-        int port = 9090;
+            Dim read As Integer = stream.Read(buffer,0,buffer.Length)
 
-    public static void Start(string ip, int port)
-    {
-        TcpClient client = new TcpClient();
-        client.Connect(ip, port);
+            If read <= 0 Then
+                Exit While
+            End If
 
-        Console.WriteLine("[+] Conectado al servidor");
 
-        NetworkStream stream = client.GetStream();
-        byte[] buffer = new byte[4096];
+            Dim response As String = Encoding.UTF8.GetString(buffer,0,read)
 
-        while (true)
-        {
-            Console.Write("> ");
-            string msg = Console.ReadLine();
+            Console.WriteLine("Servidor: " & response)
 
-            byte[] data = Encoding.UTF8.GetBytes(msg);
-            stream.Write(data, 0, data.Length);
+        End While
 
-            int read = stream.Read(buffer, 0, buffer.Length);
-            string response = Encoding.UTF8.GetString(buffer, 0, read);
 
-            Console.WriteLine(response);
-        }
-    }
-}
+        client.Close()
+
+    End Sub
+
+End Class
+
 "@
 
 
-
-[TunnelClient]::Start($Server).GetAwaiter().GetResult()
+[TunnelClient]::Start()
