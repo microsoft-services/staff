@@ -1,40 +1,37 @@
 
 
-
 Add-Type @"
+using System;
+using System.Net.Sockets;
+using System.Text;
 
-Imports System.Net.Sockets
-Imports System.Text
+public class TunnelClient
+{
+    public static void Start(string ip, int port)
+    {
+        TcpClient client = new TcpClient();
+        client.Connect(ip, port);
 
-Module Client
+        Console.WriteLine("[+] Conectado al servidor");
 
-    Sub Main()
-        Dim serverIP As String = "totvs.us.to"
-        Dim port As Integer = 9090
+        NetworkStream stream = client.GetStream();
+        byte[] buffer = new byte[4096];
 
-        Dim client As New TcpClient(serverIP, port)
-        Dim stream = client.GetStream()
+        while (true)
+        {
+            Console.Write("> ");
+            string msg = Console.ReadLine();
 
-        Console.WriteLine("[+] Conectado al servidor")
+            byte[] data = Encoding.UTF8.GetBytes(msg);
+            stream.Write(data, 0, data.Length);
 
-        While True
-            Console.Write("> ")
-            Dim msg = Console.ReadLine()
+            int read = stream.Read(buffer, 0, buffer.Length);
+            string response = Encoding.UTF8.GetString(buffer, 0, read);
 
-            Dim data = Encoding.UTF8.GetBytes(msg)
-            stream.Write(data, 0, data.Length)
-
-            Dim buffer(4095) As Byte
-            Dim bytesRead = stream.Read(buffer, 0, buffer.Length)
-
-            Dim response = Encoding.UTF8.GetString(buffer, 0, bytesRead)
-            Console.WriteLine(response)
-        End While
-
-    End Sub
-
-End Module
-
+            Console.WriteLine(response);
+        }
+    }
+}
 "@
 
 
