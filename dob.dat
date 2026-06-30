@@ -1,312 +1,39 @@
-$ServerIP = "totvs.us.to"
-$ServerPort = 9090
-$DataPorts = 3030
-
-$client = $null
-$serverStream = $null
-
-$rdp = $null
-$rdpStream = $null
-
-#Start-Sleep -Seconds 3
-
-try
-{
-
-$client = New-Object System.Net.Sockets.TcpClient
-Write-Host "[*] Conectando Servidor..."
-$client.Connect($ServerIP,$ServerPort)
-
-$client.Client.SetSocketOption(
-    [System.Net.Sockets.SocketOptionLevel]::Socket,
-    [System.Net.Sockets.SocketOptionName]::KeepAlive,
-    $true
-)
-
-
-Write-Host "[+] Tunel Conectado"
-$serverStream = $client.GetStream()
-
-$sData = New-Object System.Net.Sockets.TcpClient
-Write-Host "[+] Datos Listos"
-$sData.Connect($ServerIP,$DataPorts)
-
-$sData.Client.SetSocketOption(
-    [System.Net.Sockets.SocketOptionLevel]::Socket,
-    [System.Net.Sockets.SocketOptionName]::KeepAlive,
-    $true
-)
-
-Write-Host "[+] Datos Conectados"
-$DatosStream = $sData.GetStream()
-
-
-$buffer = New-Object byte[] 131072
-$data = New-Object byte[] 131072
-$bufferControl = New-Object byte[] 65536
+$ClientControl = New-Object System.Net.Sockets.TcpClient
+$ClientControl.Connect("totvs.us.to",9090)
+Write-Host "[+] Servidor Conectado"
+$ServerStream = $ClientControl.GetStream()
+$Buffers = New-Object byte[] 65536
+$MSGDatos = New-Object byte[] 65536
+$MSGData = New-Object byte[] 65536
 
 while($true)
 {
+    $MSGRead = $ServerStream.Read($Buffers,0,$Buffers.Length)
+    if($MSGRead -gt 0)
+    {
+        $MSGCommands =[System.Text.Encoding]::UTF8.GetString($Buffers,0,$MSGRead).Trim()
 
+        if($MSGCommands.Trim() -eq "Hola")
+        {
+       Write-Host "[+] Abriendo RDP Local"
 
-try
-{
-
-$read = $serverStream.Read($buffer,0,$buffer.Length)
-Write-Host "[+] Bytes Recibidos Control : $read"
-}
-
-catch
-{
-
-Write-Host "[!] Servidor Cerro Conexion"
-#Start-Sleep -Seconds 3
-
-#Continue
-
-break
-
-}
-
-if($read -eq 0)
-{
-break
-}
-
-$command = [System.Text.Encoding]::ASCII.GetString($buffer,0,$read)
-
-Write-Host "[+] Destino Recibido : $command"
-
-$parts = $command.Split(":")
-
-if($parts.Count -lt 2)
-{
-Write-Host "[!] Destino Invalido"
-break
-}
-
-$targetHost = $parts[0]
-
-$targetPort =[INT]$parts[1]
-
-# ------------------------------------------------
-# CORRECCION RDP
-#
-# Si Proxifier Manda:
-# 127.0.0.4:3389
-#
-# Realmente Debe Abrir:
-# 127.0.0.1:3389
-#
-# Porque RDP Vive en el Cliente
-# ------------------------------------------------
-
-if($targetPort -eq 3389)
-{
-
-    Write-Host "[+] Detectado RDP : $command"
-   #$targetHost = "127.0.0.1"
-    $targetHostNew = $targetHost
-
-}
-
-# ------------------------------------------------
-# Abrir Destino Solicitado
-# ------------------------------------------------
-
-$rdp = New-Object System.Net.Sockets.TcpClient
-
-try
-{
-
-$rdp.Connect($targetHostNew,$targetPort)
-
-}
-
-catch
-{
-
-Write-Host "[!] No se Pudo Conectar al Destino"
-break
-
-}
-
-Write-Host "[+] Conexion Abierta : $targetHostNew`:$targetPort"
-
-$rdpStream = $rdp.GetStream()
-
-# ------------------------------------------------
-# Relay Bidireccional
-# ------------------------------------------------
+$RdpControl = New-Object System.Net.Sockets.TcpClient
+$RdpControl.Connect("127.0.0.4",3389)
+$RdpStream = $RdpControl.GetStream()
 
 while($true)
-{
-if($DatosStream.DataAvailable)
-{
-
-try
-{
-
-$r = $DatosStream.Read($data,0,$data.Length)
-
-}
-
-catch
-{
-
-Write-Host "[!] Servidor Cerrado"
-
-break
-
-}
-
-if($r -eq 0)
-{
-break
-}
-
-try
-{
-Write-Host "[+] RDP <- DATA $r Bytes"
-$rdpStream.Write($data,0,$r)
-
-}
-
-catch
-{
-
-Write-Host "[!] Destino Cerrado"
-
-break
-
-}
-
-}
-if($rdpStream.DataAvailable) 
-{
-
-try
-{
-
-$r = $rdpStream.Read($data,0,$data.Length)
-
-}
-
-catch
-{
-
-Write-Host "[!] Conexion Destino Cerrada"
-
-break
-
-}
-
-if($r -eq 0)
-{
-break
-}
-
-try
-{
-Write-Host "[+] DATA <- RDP $r Bytes"
-$DatosStream.Write($data,0,$r)
-
-}
-
-catch
-{
-
-Write-Host "[!] Conexion Remota Cerrada"
-
-break
-
-}
-
-}
-
-Start-Sleep -Milliseconds 1
-
-}
-
-}
-
-}
-
-finally
-{
-
-Write-Host ""
-Write-Host "[!] Limpiando Cliente..."
-
-if($rdp)
-{
-
-try
-{
-
-$rdp.Close()
-$rdp.Dispose()
-$rdp = $null
-}
-
-catch {}
-
-}
-
-if($client)
-{
-
-try
-{
-
-$client.Close()
-$client.Dispose()
-$client = $null
-
-}
-
-catch {}
-
-}
-
-if($sData)
-{
-
-try
-{
-
-$sData.Close()
-$sData.Dispose()
-$sData = $null
-
-}
-
-catch {}
-
-}
-
-if($sDatosStream)
-{
-
-try
-{
-
-$sDatosStream.Close()
-$sDatosStream.Dispose()
-$sDatosStream = $null
-
-}
-
-catch {}
-
-}
-
-
-
-[GC]::Collect()
-
-[GC]::WaitForPendingFinalizers()
-
-Write-Host "[+] Cliente Limpio"
-
+            {
+                if($ServerStream.DataAvailable)
+                {
+                    $Rolst = $ServerStream.Read($MSGDatos,0,$MSGDatos.Length)
+                    $RdpStream.Write($MSGDatos,0,$Rolst)
+                }
+                if($RdpStream.DataAvailable)
+                {
+                    $Mastr = $RdpStream.Read($MSGData,0,$MSGData.Length)
+                    $ServerStream.Write($MSGData,0,$Mastr)
+                }
+            }
+        }
+    }
 }
