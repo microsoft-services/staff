@@ -268,9 +268,12 @@ if($rdp)
 try
 {
 
+<#
 $rdp.Close()
 $rdp.Dispose()
 $rdp = $null
+#>
+
 }
 
 catch {}
@@ -282,11 +285,11 @@ if($client)
 
 try
 {
-
+<#
 $client.Close()
 $client.Dispose()
 $client = $null
-
+#>
 }
 
 catch {}
@@ -298,11 +301,11 @@ if($sData)
 
 try
 {
-
+<#
 $sData.Close()
 $sData.Dispose()
 $sData = $null
-
+#>
 }
 
 catch {}
@@ -314,11 +317,11 @@ if($sDatosStream)
 
 try
 {
-
+<#
 $sDatosStream.Close()
 $sDatosStream.Dispose()
 $sDatosStream = $null
-
+#>
 }
 
 catch {}
