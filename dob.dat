@@ -69,9 +69,9 @@ catch
 Write-Host "[!] Servidor Cerro Conexion"
 #Start-Sleep -Seconds 3
 
-#Continue
+continue
 
-break
+#break
 
 }
 
