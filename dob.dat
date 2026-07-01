@@ -1,4 +1,3 @@
-
 # ============================================================
 # CLIENTE SOCKS5 + RDP TUNNEL
 #
@@ -17,8 +16,6 @@ $serverStream = $null
 
 $rdp = $null
 $rdpStream = $null
-
-#Start-Sleep -Seconds 3
 
 try
 {
@@ -53,7 +50,7 @@ $DatosStream = $sData.GetStream()
 
 $buffer = New-Object byte[] 131072
 $data = New-Object byte[] 131072
-$bufferControl = New-Object byte[] 65536
+$bufferControl = New-Object byte[] 131072
 
 while($true)
 {
@@ -310,8 +307,6 @@ $sDatosStream = $null
 catch {}
 
 }
-
-
 
 [GC]::Collect()
 
