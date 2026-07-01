@@ -126,6 +126,12 @@ $rdp = New-Object System.Net.Sockets.TcpClient
 try
 {
 
+
+Write-Host "[DEBUG] Host : $targetHostNew"
+
+Write-Host "[DEBUG] Port : $targetPort"
+
+
 $rdp.Connect($targetHostNew,$targetPort)
 
 }
