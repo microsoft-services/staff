@@ -96,6 +96,9 @@ $targetHost = $parts[0]
 
 $targetPort =[INT]$parts[1]
 
+Write-Host "[DEBUG] Host : $targetHostNew"
+Write-Host "[DEBUG] Port : $targetPort"
+
 # ------------------------------------------------
 # CORRECCION RDP
 #
