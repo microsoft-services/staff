@@ -86,6 +86,7 @@ Write-Host "[+] Destino Recibido : -> $command"
 
 $parts = $command.Split(":")
 
+Write-Host "[+] Parts[] : -> $parts"
 
 if($parts.Count -lt 2)
 {
