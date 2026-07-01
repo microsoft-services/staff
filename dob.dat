@@ -163,6 +163,108 @@ $rdpStream = $rdp.GetStream()
 # Relay Bidireccional
 # ------------------------------------------------
 
+
+
+
+# NEW
+
+
+
+$bufferSize = 65536
+
+$bufferA = New-Object byte[] $bufferSize
+$bufferB = New-Object byte[] $bufferSize
+
+$running = $true
+
+# -------------------------------------------------
+# CLIENT -> RDP THREAD
+# -------------------------------------------------
+$jobA = [System.Threading.Tasks.Task]::Run({
+    while ($running)
+    {
+        try
+        {
+            $r = $DatosStream.Read($bufferA, 0, $bufferA.Length)
+
+            if ($r -le 0)
+            {
+                Write-Host "[!] CLIENT CLOSED (A->B)"
+                break
+            }
+
+            $rdpStream.Write($bufferA, 0, $r)
+            $rdpStream.Flush()
+
+            Write-Host "[A->B] $r bytes"
+        }
+        catch
+        {
+            Write-Host "[!] ERROR A->B"
+            break
+        }
+    }
+
+    $running = $false
+})
+
+# -------------------------------------------------
+# RDP -> CLIENT THREAD
+# -------------------------------------------------
+$jobB = [System.Threading.Tasks.Task]::Run({
+    while ($running)
+    {
+        try
+        {
+            $r = $rdpStream.Read($bufferB, 0, $bufferB.Length)
+
+            if ($r -le 0)
+            {
+                Write-Host "[!] DEST CLOSED (B->A)"
+                break
+            }
+
+            $DatosStream.Write($bufferB, 0, $r)
+            $DatosStream.Flush()
+
+            Write-Host "[B->A] $r bytes"
+        }
+        catch
+        {
+            Write-Host "[!] ERROR B->A"
+            break
+        }
+    }
+
+    $running = $false
+})
+
+# -------------------------------------------------
+# WAIT BOTH DIRECTIONS
+# -------------------------------------------------
+while (-not $jobA.IsCompleted -and -not $jobB.IsCompleted)
+{
+    Start-Sleep -Milliseconds 50
+}
+
+$running = $false
+
+
+
+
+# NEW
+
+
+
+
+
+
+
+
+
+
+
+<#
 while($true)
 {
 if($DatosStream.DataAvailable)
@@ -250,7 +352,8 @@ break
 
 Start-Sleep -Milliseconds 1
 
-}
+}    
+#>
 
 }
 
