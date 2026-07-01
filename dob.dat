@@ -169,78 +169,6 @@ $rdpStream = $rdp.GetStream()
 # NEW
 
 
-$bufferSize = 65536
-$data = New-Object byte[] $bufferSize
-
-$readA = $DatosStream
-$writeA = $rdpStream
-
-$readB = $rdpStream
-$writeB = $DatosStream
-
-while ($true)
-{
-    $activity = $false
-
-    # -----------------------------
-    # CLIENT -> RDP
-    # -----------------------------
-    if ($readA.DataAvailable)
-    {
-        try
-        {
-            $r = $readA.Read($data, 0, $data.Length)
-
-            if ($r -eq 0)
-            {
-                Write-Host "[!] CLIENT CLOSED (A->B)"
-                break
-            }
-
-            Write-Host "[+] A -> B $r bytes"
-            $writeA.Write($data, 0, $r)
-
-            $activity = $true
-        }
-        catch
-        {
-            Write-Host "[!] ERROR A->B"
-            break
-        }
-    }
-
-    # -----------------------------
-    # RDP -> CLIENT
-    # -----------------------------
-    if ($readB.DataAvailable)
-    {
-        try
-        {
-            $r = $readB.Read($data, 0, $data.Length)
-
-            if ($r -eq 0)
-            {
-                Write-Host "[!] DEST CLOSED (B->A)"
-                break
-            }
-
-            Write-Host "[+] B -> A $r bytes"
-            $writeB.Write($data, 0, $r)
-
-            $activity = $true
-        }
-        catch
-        {
-            Write-Host "[!] ERROR B->A"
-            break
-        }
-    }
-
-    if (-not $activity)
-    {
-        Start-Sleep -Milliseconds 1
-    }
-}
 
 
 
@@ -256,7 +184,7 @@ while ($true)
 
 
 
-<#
+
 while($true)
 {
 if($DatosStream.DataAvailable)
@@ -345,7 +273,7 @@ break
 Start-Sleep -Milliseconds 1
 
 }    
-#>
+
 
 }
 
