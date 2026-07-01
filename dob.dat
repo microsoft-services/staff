@@ -86,11 +86,13 @@ Write-Host "[+] Destino Recibido : $command"
 
 $parts = $command.Split(":")
 
+<#
 if($parts.Count -lt 2)
 {
 Write-Host "[!] Destino Invalido"
 break
 }
+#>
 
 $targetHost = $parts[0]
 
