@@ -163,28 +163,6 @@ $rdpStream = $rdp.GetStream()
 # Relay Bidireccional
 # ------------------------------------------------
 
-
-
-
-# NEW
-
-
-
-
-
-# NEW
-
-
-
-
-
-
-
-
-
-
-
-
 while($true)
 {
 if($DatosStream.DataAvailable)
@@ -272,8 +250,7 @@ break
 
 Start-Sleep -Milliseconds 1
 
-}    
-
+}
 
 }
 
