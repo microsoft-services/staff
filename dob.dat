@@ -155,7 +155,7 @@ break
 
 }
 
-Write-Host "[+] Conexion Abierta : $targetHostNew`:$targetPort"
+Write-Host "[+] Conexion Abierta : $targetHost`:$targetPort"
 
 $rdpStream = $rdp.GetStream()
 
