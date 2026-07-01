@@ -69,9 +69,9 @@ catch
 Write-Host "[!] Servidor Cerro Conexion"
 #Start-Sleep -Seconds 3
 
-continue
+#continue
 
-#break
+break
 
 }
 
@@ -325,9 +325,9 @@ catch {}
 
 }
 
-[GC]::Collect()
+#[GC]::Collect()
 
-[GC]::WaitForPendingFinalizers()
+#[GC]::WaitForPendingFinalizers()
 
 Write-Host "[+] Cliente Limpio"
 
