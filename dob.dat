@@ -123,8 +123,8 @@ if($targetPort -eq 3389)
 {
 
     Write-Host "[+] Detectado RDP : $command"
-     $targetHost = "127.0.0.1"
-    #$targetHostNew = $targetHost
+     #$targetHost = "127.0.0.1"
+      $targetHost = $targetHost
 
 }
 
