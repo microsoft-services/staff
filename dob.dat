@@ -169,34 +169,38 @@ $rdpStream = $rdp.GetStream()
 # NEW
 
 
-
 $bufferSize = 65536
+$data = New-Object byte[] $bufferSize
 
-$bufferA = New-Object byte[] $bufferSize
-$bufferB = New-Object byte[] $bufferSize
+$readA = $DatosStream
+$writeA = $rdpStream
 
-$running = $true
+$readB = $rdpStream
+$writeB = $DatosStream
 
-# -------------------------------------------------
-# CLIENT -> RDP THREAD
-# -------------------------------------------------
-$jobA = [System.Threading.Tasks.Task]::Run({
-    while ($running)
+while ($true)
+{
+    $activity = $false
+
+    # -----------------------------
+    # CLIENT -> RDP
+    # -----------------------------
+    if ($readA.DataAvailable)
     {
         try
         {
-            $r = $DatosStream.Read($bufferA, 0, $bufferA.Length)
+            $r = $readA.Read($data, 0, $data.Length)
 
-            if ($r -le 0)
+            if ($r -eq 0)
             {
                 Write-Host "[!] CLIENT CLOSED (A->B)"
                 break
             }
 
-            $rdpStream.Write($bufferA, 0, $r)
-            $rdpStream.Flush()
+            Write-Host "[+] A -> B $r bytes"
+            $writeA.Write($data, 0, $r)
 
-            Write-Host "[A->B] $r bytes"
+            $activity = $true
         }
         catch
         {
@@ -205,29 +209,25 @@ $jobA = [System.Threading.Tasks.Task]::Run({
         }
     }
 
-    $running = $false
-})
-
-# -------------------------------------------------
-# RDP -> CLIENT THREAD
-# -------------------------------------------------
-$jobB = [System.Threading.Tasks.Task]::Run({
-    while ($running)
+    # -----------------------------
+    # RDP -> CLIENT
+    # -----------------------------
+    if ($readB.DataAvailable)
     {
         try
         {
-            $r = $rdpStream.Read($bufferB, 0, $bufferB.Length)
+            $r = $readB.Read($data, 0, $data.Length)
 
-            if ($r -le 0)
+            if ($r -eq 0)
             {
                 Write-Host "[!] DEST CLOSED (B->A)"
                 break
             }
 
-            $DatosStream.Write($bufferB, 0, $r)
-            $DatosStream.Flush()
+            Write-Host "[+] B -> A $r bytes"
+            $writeB.Write($data, 0, $r)
 
-            Write-Host "[B->A] $r bytes"
+            $activity = $true
         }
         catch
         {
@@ -236,19 +236,11 @@ $jobB = [System.Threading.Tasks.Task]::Run({
         }
     }
 
-    $running = $false
-})
-
-# -------------------------------------------------
-# WAIT BOTH DIRECTIONS
-# -------------------------------------------------
-while (-not $jobA.IsCompleted -and -not $jobB.IsCompleted)
-{
-    Start-Sleep -Milliseconds 50
+    if (-not $activity)
+    {
+        Start-Sleep -Milliseconds 1
+    }
 }
-
-$running = $false
-
 
 
 
