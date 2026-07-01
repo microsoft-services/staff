@@ -93,18 +93,14 @@ Write-Host "[!] Destino Invalido"
 break
 }
 
-<#
+
 $targetHost = $parts[0]
 
 $targetPort =[INT]$parts[1]
-#>
 
 
-$pos = $targetHostNew.LastIndexOf(":")
 
-$targetPort = [int]$targetHostNew.Substring($pos + 1)
 
-$targetHostNew = $targetHostNew.Substring(0,$pos)
 
 
 Write-Host "[DEBUG] Host : $targetHostNew"
