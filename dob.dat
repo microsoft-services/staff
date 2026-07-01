@@ -82,7 +82,7 @@ break
 
 $command = [System.Text.Encoding]::ASCII.GetString($buffer,0,$read)
 
-Write-Host "[+] Destino Recibido : $command"
+Write-Host "[+] Destino Recibido : -> $command"
 
 $parts = $command.Split(":")
 
