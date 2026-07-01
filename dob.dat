@@ -86,7 +86,7 @@ Write-Host "[+] Destino Recibido : -> $command"
 
 $parts = $command.Split(":")
 
-Write-Host "[+] Parts[] : -> $parts"
+
 
 if($parts.Count -lt 2)
 {
@@ -104,7 +104,7 @@ $targetPort =[INT]$parts[1]
 
 
 
-Write-Host "[DEBUG] Host : $targetHostNew"
+Write-Host "[DEBUG] Host : $targetHost"
 Write-Host "[DEBUG] Port : $targetPort"
 
 # ------------------------------------------------
@@ -123,8 +123,8 @@ if($targetPort -eq 3389)
 {
 
     Write-Host "[+] Detectado RDP : $command"
-   #$targetHost = "127.0.0.1"
-    $targetHostNew = $targetHost
+     $targetHost = "127.0.0.1"
+    #$targetHostNew = $targetHost
 
 }
 
@@ -138,12 +138,12 @@ try
 {
 
 
-Write-Host "[DEBUG] Host : $targetHostNew"
+Write-Host "[DEBUG] Host : $targetHost"
 
 Write-Host "[DEBUG] Port : $targetPort"
 
 
-$rdp.Connect($targetHostNew,$targetPort)
+$rdp.Connect($targetHost,$targetPort)
 
 }
 
